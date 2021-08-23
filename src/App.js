@@ -12,7 +12,8 @@ import React,{useEffect,useState} from 'react';
 function App() {
 
     const[links,setLinks]=useState([]);
-    const[showAddLink,setShowAddLink]=useState(false)
+    const[showAddLink,setShowAddLink]=useState(false);
+    
     const addLink=(link)=>{
       const id=uuidv4();
       const newLink={id,...link}
@@ -33,6 +34,43 @@ function App() {
         })
         localStorage.setItem("linkAdded",JSON.stringify(deleteLink))
   }
+  const scoreUp=(id)=>{ 
+    let data=JSON.parse(localStorage.getItem("linkAdded"));
+    const linkscore=1;
+    const scoreUp= data.map(link=>{
+      if(link.id==id){
+        return{
+          ...link,
+          linkScore:linkscore+link.linkScore,
+          id:id
+        }
+      }
+      return link;
+    })
+    localStorage.setItem("linkAdded",JSON.stringify(scoreUp));
+    window.location.reload();
+  }
+
+
+  const scoreDown=(id)=>{
+    let data=JSON.parse(localStorage.getItem("linkAdded"));
+    const linkscore=1;
+    const scoreDown= data.map(link=>{
+      if(link.id==id){
+        return{
+          ...link,
+          linkScore:link.linkScore-linkscore,
+          id:id
+        }
+      }
+      return link;
+    })
+    localStorage.setItem("linkAdded",JSON.stringify(scoreDown));
+    window.location.reload();
+  }
+  
+
+
   const getLinks=JSON.parse(localStorage.getItem("linkAdded"));
   useEffect(()=>{
     if(getLinks==null){
@@ -53,7 +91,7 @@ function App() {
       <h3>Number of Links: {links.length}</h3>
       {
         links.length > 0 ?
-        (<Lists links={links} onDelete={deleteLink} /> ):
+        (<Lists links={links} onDelete={deleteLink} scoreDown={scoreDown} scoreUp={scoreUp} /> ):
         ('no link found')  
       }
     </div>

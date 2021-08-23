@@ -6,6 +6,7 @@ import Swal from "sweetalert2"
 const InputItem=({onSave})=>{
     const[linkName,setLinkName]=useState('');
     const [linkUrl,setLinkUrl]=useState('');
+    const [linkScore,setLinkScore]=useState(0);
     const onSubmit= (e)=>{
         e.preventDefault();
         if(!linkName&&!linkUrl){
@@ -27,10 +28,11 @@ const InputItem=({onSave})=>{
                 text:'fill in link url'
             })
         }else{
-            onSave({linkName,linkUrl})
+            onSave({linkName,linkUrl,linkScore})
         }
         setLinkName('');
         setLinkUrl('');
+        setLinkScore('0');
     }
 
     return(
