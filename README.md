@@ -13,6 +13,15 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 
+### `npm install`
+
+Install the packages.
+
+### `npm test -- --coverage`
+
+Launches the test runner with coverage.
+
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
