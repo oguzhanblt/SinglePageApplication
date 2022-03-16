@@ -38,7 +38,7 @@ function App() {
     let data=JSON.parse(localStorage.getItem("linkAdded"));
     const linkscore=1;
     const scoreUp= data.map(link=>{
-      if(link.id==id){
+      if(link.id===id){
         return{
           ...link,
           linkScore:linkscore+link.linkScore,
@@ -56,7 +56,7 @@ function App() {
     let data=JSON.parse(localStorage.getItem("linkAdded"));
     const linkscore=1;
     const scoreDown= data.map(link=>{
-      if(link.id==id){
+      if(link.id===id){
         return{
           ...link,
           linkScore:link.linkScore-linkscore,
@@ -78,7 +78,7 @@ function App() {
     }else{
       setLinks(getLinks);
     }
-  },[])
+  },[getLinks])
   
 
   return (
